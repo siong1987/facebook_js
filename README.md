@@ -16,7 +16,7 @@ First, you have to create a file named `facebook_js.rb` under your `config/initi
     FacebookJs.status = true # check the login status upon init? (optional)
     FacebookJs.cookie = true # set sessions cookies to allow your server to access the session? (optional)
     FacebookJs.xfbml = true # parse XFBML tags on this page? (optional)
-    FacebookJs.debug = false # to start the FB JS script in debug mode (optional)
+    FacebookJs.debug = !Rails.env.production? # to start the FB JS script in debug mode (optional)
 
 Check out the list of available locales on Facebook [here][2].
 
