@@ -1,5 +1,5 @@
 module FacebookJs
-  mattr_accessor :locale, :app_id, :status, :cookie, :xfbml, :debug
+  mattr_accessor :locale, :domain, :app_id, :status, :cookie, :xfbml, :debug
 
   module App
     class << self
@@ -16,6 +16,22 @@ module FacebookJs
   class << self
     def locale
       @@locale || "en_US"
+    end
+
+    def status
+      @@status.nil? ? true : @@status
+    end
+
+    def cookie
+      @@cookie .nil? ? true : @@cookie
+    end
+
+    def xfbml
+      @@xfbml.nil? ? true : @@xfbml
+    end
+
+    def debug
+      @@debug.nil? ? false : @@debug
     end
   end
 

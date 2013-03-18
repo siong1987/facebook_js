@@ -6,6 +6,12 @@ class NavigationTest < ActionDispatch::IntegrationTest
     assert_equal "<script src='//connect.facebook.net/en_US/all.js'></script>", body
   end
 
+  test '/channel.html should show proper locale' do
+    FacebookJs.locale = 'zh_CN'
+    get '/channel.html'
+    assert_equal "<script src='//connect.facebook.net/zh_CN/all.js'></script>", body
+  end
+
   test '/channel.html should have the proper headers' do
     get '/channel.html'
     assert_equal "public", headers[:"Pragma"]
