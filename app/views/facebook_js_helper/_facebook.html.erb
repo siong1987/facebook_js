@@ -9,8 +9,9 @@
       xfbml      : <%= xfbml %>
     });
 
-    // Additional initialization code such as adding Event Listeners goes here
-
+    <% if block %>
+      <%= block %>
+    <% end %>
   };
   (function(d, debug){
     var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
