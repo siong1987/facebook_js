@@ -13,6 +13,7 @@ module FacebookJsHelper
       cookie: FacebookJs.cookie,
       xfbml: FacebookJs.xfbml,
       debug: FacebookJs.debug,
+      locale: FacebookJs.locale,
       block: block
     }
   end
