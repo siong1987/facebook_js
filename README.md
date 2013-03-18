@@ -30,7 +30,7 @@ If you want to have additional initialization code, just do this:
 
     = facebook_js do
       // javascript
-      function() { alert('Hello, world!'); }
+      alert('Hello, world!!!');
 
 ##License
 
