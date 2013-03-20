@@ -1,5 +1,7 @@
 module FacebookJsHelper
-  def facebook_js(&block)
+  def facebook_js(opts={}, &block)
+    turbolink = opts[:turbolink] ? opts[:turbolink] : false
+
     if block_given?
       block = capture(&block)
     else
@@ -14,7 +16,8 @@ module FacebookJsHelper
       xfbml: FacebookJs.xfbml,
       debug: FacebookJs.debug,
       locale: FacebookJs.locale,
-      block: block
+      block: block,
+      turbolink: turbolink
     }
   end
 end

@@ -1,3 +1,4 @@
+<% unless turbolink %>
 <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
@@ -21,3 +22,65 @@
     ref.parentNode.insertBefore(js, ref);
   }(document, <%= debug %>));
 </script>
+<% else %>
+<script>
+  (function() {
+    var bindFacebookEvents, fb_events_bound, fb_root, initializeFacebookSDK, loadFacebookSDK, restoreFacebookRoot, saveFacebookRoot;
+
+    fb_root = null;
+    fb_events_bound = false;
+
+    $(function() {
+      loadFacebookSDK();
+      if (!fb_events_bound) {
+        bindFacebookEvents();
+      }
+    });
+
+    bindFacebookEvents = function() {
+      $(document).on('page:fetch', saveFacebookRoot).on('page:change', restoreFacebookRoot);
+      <% if xfbml %>
+      $(document).on('page:load', function() {
+        typeof(FB) !== "undefined" && FB !== null ? FB.XFBML.parse() : void 0;
+      });
+      <% end %>
+      fb_events_bound = true;
+    };
+
+    saveFacebookRoot = function() {
+      return fb_root = $('#fb-root').detach();
+    };
+
+    restoreFacebookRoot = function() {
+      if ($('#fb-root').length > 0) {
+        $('#fb-root').replaceWith(fb_root);
+      } else {
+        $('body').append(fb_root);
+      }
+    };
+
+    loadFacebookSDK = function() {
+      window.fbAsyncInit = initializeFacebookSDK;
+      <% if debug %>
+      $.getScript("//connect.facebook.net/<%= locale %>/all/debug.js");
+      <% else %>
+      $.getScript("//connect.facebook.net/<%= locale %>/all.js");
+      <% end %>
+    };
+
+    initializeFacebookSDK = function() {
+      FB.init({
+        appId      : '<%= app_id %>',
+        channelUrl : '//<%= domain %>/channel.html',
+        status     : <%= status %>,
+        cookie     : <%= cookie %>,
+        xfbml      : <%= xfbml %>
+      });
+
+      <% if block %>
+        <%= block %>
+      <% end %>
+    };
+  }).call(this);
+</script>
+<% end %>

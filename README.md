@@ -37,6 +37,12 @@ To this:
 
     = facebook_js
 
+## Turbolinks Support
+
+To use `facebook_js` with [turbolinks][3], you should insert `facebook_js` within the `<head>` section.
+
+    = facebook_js turbolink: true
+
 ## Installation
 
 In your Gemfile, add `gem 'facebook_js'`, then, `bundle install`.
@@ -73,3 +79,4 @@ MIT License. See LICENSE for details.
 
 [1]: https://developers.facebook.com/docs/reference/javascript/
 [2]: https://www.facebook.com/translations/FacebookLocales.xml
+[3]: https://github.com/rails/turbolinks/
