@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    facebook_js (0.0.2)
+    facebook_js (0.0.3)
       rails (~> 4.0.0.beta1)
 
 GEM
